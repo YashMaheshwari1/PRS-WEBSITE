@@ -23,9 +23,11 @@ import Earth from './components/Earth';
 import Stars from './components/Stars';
 import ShootingStars from './components/ShootingStars';
 import AsteroidField from './components/Asteroids';
-import Contact from './pages/Contact';
+import Contact from './pages/Contact/Contact';
 import About from './pages/About';
 import Home from './pages/Home';
+import RefundPolicy from './pages/Contact/RefundPolicy';
+import React, { useState } from 'react';
 
 // Theme configuration
 const theme = {
@@ -174,6 +176,8 @@ const MainContent = styled.div`
 `;
 
 function PrsVisionApp() {
+  const [showRefundPolicy, setShowRefundPolicy] = useState(false);
+  
   // Create Earth configurations with different positions
   const earths = [
     {
@@ -190,6 +194,7 @@ function PrsVisionApp() {
 
   // Add the scrollToSection function
   const scrollToSection = (sectionId) => {
+    setShowRefundPolicy(false); // Hide refund policy when navigating sections
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -299,15 +304,21 @@ function PrsVisionApp() {
             </NavbarContainer>
 
             <MainContent>
-              <div id="home">
-                <Home />
-              </div>
-              <div id="about">
-                <About />
-              </div>
-              <div id="contact">
-                <Contact />
-              </div>
+              {showRefundPolicy ? (
+                <RefundPolicy />
+              ) : (
+                <>
+                  <div id="home">
+                    <Home />
+                  </div>
+                  <div id="about">
+                    <About />
+                  </div>
+                  <div id="contact">
+                    <Contact setShowRefundPolicy={setShowRefundPolicy} />
+                  </div>
+                </>
+              )}
             </MainContent>
           </Router>
         </GlobalStyles>

@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
-import Contact from './pages/Contact';
+import Contact from './pages/Contact/Contact';
+import RefundPolicy from './pages/Contact/RefundPolicy';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
         </Routes>
       </AppContainer>
     </Router>
